@@ -14,6 +14,6 @@ config :idle_isles, IdleIsles.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "idle_strike_test",
+  database: "idle_isles_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

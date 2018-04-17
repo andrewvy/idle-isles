@@ -51,6 +51,6 @@ config :idle_isles, IdleIsles.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "idle_strike_dev",
+  database: "idle_isles_dev",
   hostname: "localhost",
   pool_size: 10
