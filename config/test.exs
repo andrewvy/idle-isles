@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :idle_strike, IdleStrikeWeb.Endpoint,
+config :idle_isles, IdleIslesWeb.Endpoint,
   http: [port: 4001],
   server: false
 
@@ -10,7 +10,7 @@ config :idle_strike, IdleStrikeWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :idle_strike, IdleStrike.Repo,
+config :idle_isles, IdleIsles.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",

@@ -6,12 +6,12 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :idle_strike, IdleStrikeWeb.Endpoint,
+config :idle_isles, IdleIslesWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["assets/node_modules/parcel-bundler/bin/cli.js", "watch", "assets/js/app.js", "--out-dir", "priv/static/assets"]]
+  watchers: [node: ["assets/node_modules/parcel-bundler/bin/cli.js", "watch", "assets/js/bundle.js", "--out-dir", "priv/static/assets"]]
 
 # ## SSL Support
 #
@@ -30,7 +30,7 @@ config :idle_strike, IdleStrikeWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :idle_strike, IdleStrikeWeb.Endpoint,
+config :idle_isles, IdleIslesWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/gettext/.*(po)$},
@@ -47,7 +47,7 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :idle_strike, IdleStrike.Repo,
+config :idle_isles, IdleIsles.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",

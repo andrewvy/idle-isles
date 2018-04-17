@@ -1,5 +1,5 @@
-defmodule IdleStrike.Repo do
-  use Ecto.Repo, otp_app: :idle_strike
+defmodule IdleIsles.Repo do
+  use Ecto.Repo, otp_app: :idle_isles
 
   @doc """
   Dynamically loads the repository url from the

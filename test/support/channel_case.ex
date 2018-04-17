@@ -1,4 +1,4 @@
-defmodule IdleStrikeWeb.ChannelCase do
+defmodule IdleIslesWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule IdleStrikeWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint IdleStrikeWeb.Endpoint
+      @endpoint IdleIslesWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(IdleStrike.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(IdleIsles.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(IdleStrike.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(IdleIsles.Repo, {:shared, self()})
     end
     :ok
   end

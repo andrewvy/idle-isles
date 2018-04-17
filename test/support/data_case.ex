@@ -1,4 +1,4 @@
-defmodule IdleStrike.DataCase do
+defmodule IdleIsles.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule IdleStrike.DataCase do
 
   using do
     quote do
-      alias IdleStrike.Repo
+      alias IdleIsles.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import IdleStrike.DataCase
+      import IdleIsles.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(IdleStrike.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(IdleIsles.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(IdleStrike.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(IdleIsles.Repo, {:shared, self()})
     end
 
     :ok

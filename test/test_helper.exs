@@ -1,4 +1,4 @@
 ExUnit.start()
 
-Ecto.Adapters.SQL.Sandbox.mode(IdleStrike.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(IdleIsles.Repo, :manual)
 

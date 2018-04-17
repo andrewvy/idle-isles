@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :idle_strike,
-  ecto_repos: [IdleStrike.Repo]
+config :idle_isles,
+  ecto_repos: [IdleIsles.Repo]
 
 # Configures the endpoint
-config :idle_strike, IdleStrikeWeb.Endpoint,
+config :idle_isles, IdleIslesWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "JxW/xo1bLk0GUXhpCEGAsdXXutq7YomPIPoRX/KufmQaVNaTtoi2Xsjw9o1c/CO/",
-  render_errors: [view: IdleStrikeWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: IdleStrike.PubSub,
+  render_errors: [view: IdleIslesWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: IdleIsles.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

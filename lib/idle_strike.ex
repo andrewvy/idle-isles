@@ -1,6 +1,6 @@
-defmodule IdleStrike do
+defmodule IdleIsles do
   @moduledoc """
-  IdleStrike keeps the contexts that define your domain
+  IdleIsles keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

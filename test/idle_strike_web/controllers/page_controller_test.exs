@@ -1,5 +1,5 @@
-defmodule IdleStrikeWeb.PageControllerTest do
-  use IdleStrikeWeb.ConnCase
+defmodule IdleIslesWeb.PageControllerTest do
+  use IdleIslesWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

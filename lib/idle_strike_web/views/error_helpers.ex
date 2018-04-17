@@ -1,4 +1,4 @@
-defmodule IdleStrikeWeb.ErrorHelpers do
+defmodule IdleIslesWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -36,9 +36,9 @@ defmodule IdleStrikeWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(IdleStrikeWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(IdleIslesWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(IdleStrikeWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(IdleIslesWeb.Gettext, "errors", msg, opts)
     end
   end
 end

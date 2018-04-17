@@ -1,3 +1,3 @@
-defmodule IdleStrikeWeb.PageViewTest do
-  use IdleStrikeWeb.ConnCase, async: true
+defmodule IdleIslesWeb.PageViewTest do
+  use IdleIslesWeb.ConnCase, async: true
 end

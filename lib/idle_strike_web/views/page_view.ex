@@ -1,3 +1,3 @@
-defmodule IdleStrikeWeb.PageView do
-  use IdleStrikeWeb, :view
+defmodule IdleIslesWeb.PageView do
+  use IdleIslesWeb, :view
 end

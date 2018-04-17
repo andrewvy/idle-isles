@@ -1,4 +1,4 @@
-# IdleStrike
+# IdleIsles
 
 The best multiplayer idle RPG.
 

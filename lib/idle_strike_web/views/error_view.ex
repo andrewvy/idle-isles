@@ -1,5 +1,5 @@
-defmodule IdleStrikeWeb.ErrorView do
-  use IdleStrikeWeb, :view
+defmodule IdleIslesWeb.ErrorView do
+  use IdleIslesWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

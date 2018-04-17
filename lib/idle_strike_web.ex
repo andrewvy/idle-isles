@@ -1,12 +1,12 @@
-defmodule IdleStrikeWeb do
+defmodule IdleIslesWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use IdleStrikeWeb, :controller
-      use IdleStrikeWeb, :view
+      use IdleIslesWeb, :controller
+      use IdleIslesWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,17 +19,17 @@ defmodule IdleStrikeWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: IdleStrikeWeb
+      use Phoenix.Controller, namespace: IdleIslesWeb
       import Plug.Conn
-      import IdleStrikeWeb.Router.Helpers
-      import IdleStrikeWeb.Gettext
+      import IdleIslesWeb.Router.Helpers
+      import IdleIslesWeb.Gettext
     end
   end
 
   def view do
     quote do
       use Phoenix.View, root: "lib/idle_strike_web/templates",
-                        namespace: IdleStrikeWeb
+                        namespace: IdleIslesWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -37,9 +37,9 @@ defmodule IdleStrikeWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import IdleStrikeWeb.Router.Helpers
-      import IdleStrikeWeb.ErrorHelpers
-      import IdleStrikeWeb.Gettext
+      import IdleIslesWeb.Router.Helpers
+      import IdleIslesWeb.ErrorHelpers
+      import IdleIslesWeb.Gettext
     end
   end
 
@@ -54,7 +54,7 @@ defmodule IdleStrikeWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import IdleStrikeWeb.Gettext
+      import IdleIslesWeb.Gettext
     end
   end
 

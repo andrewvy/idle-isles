@@ -1,9 +1,9 @@
-defmodule IdleStrike.Mixfile do
+defmodule IdleIsles.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :idle_strike,
+      app: :idle_isles,
       version: "0.0.1",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env),
@@ -19,7 +19,7 @@ defmodule IdleStrike.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {IdleStrike.Application, []},
+      mod: {IdleIsles.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

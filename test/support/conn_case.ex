@@ -1,4 +1,4 @@
-defmodule IdleStrikeWeb.ConnCase do
+defmodule IdleIslesWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,18 +19,18 @@ defmodule IdleStrikeWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import IdleStrikeWeb.Router.Helpers
+      import IdleIslesWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint IdleStrikeWeb.Endpoint
+      @endpoint IdleIslesWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(IdleStrike.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(IdleIsles.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(IdleStrike.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(IdleIsles.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

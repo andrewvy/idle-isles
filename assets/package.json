@@ -2,8 +2,8 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "deploy": "parcel build assets/js/app.js --out-dir priv/static/assets",
-    "watch": "parcel watch assets/js/app.js --out-dir priv/static/assets",
+    "deploy": "parcel build assets/js/bundle.js --out-dir priv/static/assets",
+    "watch": "parcel watch assets/js/bundle.js --out-dir priv/static/assets",
     "lint": "standard"
   },
   "dependencies": {

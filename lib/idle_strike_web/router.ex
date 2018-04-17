@@ -1,5 +1,5 @@
-defmodule IdleStrikeWeb.Router do
-  use IdleStrikeWeb, :router
+defmodule IdleIslesWeb.Router do
+  use IdleIslesWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,14 +13,14 @@ defmodule IdleStrikeWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", IdleStrikeWeb do
+  scope "/", IdleIslesWeb do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", IdleStrikeWeb do
+  # scope "/api", IdleIslesWeb do
   #   pipe_through :api
   # end
 end

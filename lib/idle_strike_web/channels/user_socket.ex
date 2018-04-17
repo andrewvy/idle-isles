@@ -1,8 +1,8 @@
-defmodule IdleStrikeWeb.UserSocket do
+defmodule IdleIslesWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", IdleStrikeWeb.RoomChannel
+  # channel "room:*", IdleIslesWeb.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -30,7 +30,7 @@ defmodule IdleStrikeWeb.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     IdleStrikeWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
+  #     IdleIslesWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil

@@ -1,14 +1,14 @@
-defmodule IdleStrikeWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :idle_strike
+defmodule IdleIslesWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :idle_isles
 
-  socket "/socket", IdleStrikeWeb.UserSocket
+  socket "/socket", IdleIslesWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :idle_strike, gzip: false,
+    at: "/", from: :idle_isles, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt assets)
 
   # Code reloading can be explicitly enabled under the
@@ -37,7 +37,7 @@ defmodule IdleStrikeWeb.Endpoint do
     key: "_idle_strike_key",
     signing_salt: "dj8/OoHn"
 
-  plug IdleStrikeWeb.Router
+  plug IdleIslesWeb.Router
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

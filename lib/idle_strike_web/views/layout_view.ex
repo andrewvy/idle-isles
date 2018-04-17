@@ -1,3 +1,3 @@
-defmodule IdleStrikeWeb.LayoutView do
-  use IdleStrikeWeb, :view
+defmodule IdleIslesWeb.LayoutView do
+  use IdleIslesWeb, :view
 end
