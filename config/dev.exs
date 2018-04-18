@@ -34,8 +34,8 @@ config :idle_isles, IdleIslesWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/idle_strike_web/views/.*(ex)$},
-      ~r{lib/idle_strike_web/templates/.*(eex)$}
+      ~r{lib/idle_isles_web/views/.*(ex)$},
+      ~r{lib/idle_isles_web/templates/.*(eex)$}
     ]
   ]
 

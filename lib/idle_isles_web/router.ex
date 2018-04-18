@@ -10,17 +10,19 @@ defmodule IdleIslesWeb.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug IdleIslesWeb.Context
   end
 
   scope "/", IdleIslesWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", IdleIslesWeb do
-  #   pipe_through :api
-  # end
+  scope "/api" do
+    pipe_through :api
+
+    forward "/", Absinthe.Plug,
+      schema: IdleIslesWeb.Schema
+  end
 end

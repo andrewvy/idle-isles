@@ -34,7 +34,7 @@ defmodule IdleIslesWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_idle_strike_key",
+    key: "_idle_isles_key",
     signing_salt: "dj8/OoHn"
 
   plug IdleIslesWeb.Router

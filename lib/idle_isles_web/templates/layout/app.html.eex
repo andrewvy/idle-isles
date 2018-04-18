@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Idle Strike</title>
+    <title>Idle Isles</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/assets/bundle.css") %>">
   </head>
 

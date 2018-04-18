@@ -28,7 +28,7 @@ defmodule IdleIslesWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/idle_strike_web/templates",
+      use Phoenix.View, root: "lib/idle_isles_web/templates",
                         namespace: IdleIslesWeb
 
       # Import convenience functions from controllers
