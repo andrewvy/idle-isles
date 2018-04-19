@@ -14,6 +14,14 @@ const setAuthToken = (state, token) => {
   return { ...state, authToken: token }
 }
 
+const clearAuthToken = (state) => {
+  if (window.localStorage) {
+    window.localStorage.removeItem('auth_token', null)
+  }
+
+  return { ...state, authToken: null }
+}
+
 const initialState = {
   user: {},
   isLoggedIn: false,
@@ -50,6 +58,8 @@ const App = (state = initialState, action) => {
       return { ...state, loginModal: { ...state.loginModal, isLoggingIn: false } }
     case 'APP:SET_AUTH_TOKEN':
       return setAuthToken(state, data.token)
+    case 'APP:LOGOUT':
+      return clearAuthToken(state)
     default:
       return state
   }

@@ -12,7 +12,7 @@ const AuthRoute = ({
     <Route
       {...rest}
       render={props =>
-        Store.getState().App.authToken ? (
+        Boolean(Store.getState().App.authToken) ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -27,6 +27,31 @@ const AuthRoute = ({
   )
 }
 
+const DeauthRoute = ({
+	component: Component,
+  store,
+	...rest
+}) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        !Boolean(Store.getState().App.authToken) ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/home",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  )
+}
+
 export {
   AuthRoute,
+  DeauthRoute,
 }

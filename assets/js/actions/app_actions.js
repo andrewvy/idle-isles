@@ -1,27 +1,35 @@
 import { RSAA } from 'redux-api-middleware'
 
+import History from '~/lib/history'
+
 import loginQuery from '~/queries/login'
 
 const toggleLoginModal = () => ({
   type: 'APP:HOME:TOGGLE_LOGIN_MODAL',
 })
 
-const submitLogin = (email, password) => ({
-  [RSAA]: {
-    endpoint: '/api',
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: loginQuery,
-      variables: {
-        email,
-        password,
+const submitLogin = (email, password) => ((dispatch, _) => {
+  const apiAction = {
+    [RSAA]: {
+      endpoint: '/api',
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
       },
-    }),
-    types: ['APP:HOME:LOGIN:REQUEST', 'APP:HOME:LOGIN:SUCCESS', 'APP:HOME:LOGIN:FAILURE']
+      body: JSON.stringify({
+        query: loginQuery,
+        variables: {
+          email,
+          password,
+        },
+      }),
+      types: ['APP:HOME:LOGIN:REQUEST', 'APP:HOME:LOGIN:SUCCESS', 'APP:HOME:LOGIN:FAILURE']
+    }
   }
+
+  dispatch(apiAction).then(() => {
+    History.push('/home', {})
+  })
 })
 
 const setLoginModalEmail = (email) => ({
@@ -45,9 +53,20 @@ const setAuthToken = (token) => ({
   },
 })
 
+const logout = () => ((dispatch, _) => {
+  const action = {
+    type: 'APP:LOGOUT',
+  }
+
+  dispatch(action)
+
+  History.push('/', {})
+})
+
 export default {
-  toggleLoginModal,
-  submitLogin,
+  logout,
   setLoginModalEmail,
   setLoginModalPassword,
+  submitLogin,
+  toggleLoginModal,
 }
