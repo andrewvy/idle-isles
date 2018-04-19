@@ -8,9 +8,12 @@ import { Route } from 'react-router'
 
 import 'bulma'
 
-import App from '~/components/app'
 import Store from '~/store'
 import History from '~/lib/history'
+import { AuthRoute } from '~/lib/router_helpers'
+
+import App from '~/components/app'
+import Home from '~/components/home'
 
 const wrapper = document.getElementById('app')
 
@@ -18,7 +21,10 @@ if (wrapper) {
   render(
     <Provider store={Store}>
       <ConnectedRouter history={History}>
-        <Route exact path='/' component={App} />
+        <div>
+          <Route exact path='/' component={App} />
+          <AuthRoute path='/home' component={Home} />
+        </div>
       </ConnectedRouter>
     </Provider>
   , wrapper
