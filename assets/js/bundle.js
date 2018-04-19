@@ -1,10 +1,19 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import { render } from 'react-dom'
+
+import 'bulma'
 
 import App from '~/components/app'
-import { render } from 'react-dom'
+import Store from '~/store'
 
 const wrapper = document.getElementById('app')
 
 if (wrapper) {
-  render(<App />, wrapper)
+  render(
+    <Provider store={Store}>
+      <App />
+    </Provider>
+  , wrapper
+  )
 }

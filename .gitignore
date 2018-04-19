@@ -28,3 +28,5 @@ npm-debug.log
 
 .cache/
 /assets/yarn-error.log
+
+.DS_Store
