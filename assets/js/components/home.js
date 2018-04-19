@@ -1,10 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import Actions from '~/actions'
 
 const Home = ({
-}) => (
-  <div>
-    Home
-  </div>
-)
+  connectToChatChannel,
+}) => {
+  connectToChatChannel()
 
-export default Home
+  return (
+    <div>
+      Home
+    </div>
+  )
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  connectToChatChannel: () => dispatch(Actions.App.connectToChatChannel())
+})
+
+export default connect(
+  () => ({}),
+  mapDispatchToProps,
+)(Home)

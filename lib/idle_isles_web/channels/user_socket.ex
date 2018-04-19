@@ -2,7 +2,7 @@ defmodule IdleIslesWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", IdleIslesWeb.RoomChannel
+  channel "chat", IdleIslesWeb.ChatChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -19,7 +19,7 @@ defmodule IdleIslesWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
+  def connect(params, socket) do
     {:ok, socket}
   end
 

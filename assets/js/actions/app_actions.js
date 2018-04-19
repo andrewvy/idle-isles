@@ -3,6 +3,7 @@ import { RSAA } from 'redux-api-middleware'
 import History from '~/lib/history'
 
 import loginQuery from '~/queries/login'
+import { startChatChannel } from '~/lib/channels'
 
 const toggleLoginModal = () => ({
   type: 'APP:HOME:TOGGLE_LOGIN_MODAL',
@@ -63,7 +64,18 @@ const logout = () => ((dispatch, _) => {
   History.push('/', {})
 })
 
+const connectToChatChannel = () => ((dispatch, getState) => {
+  const authToken = getState().App.authToken
+
+  dispatch({
+    type: 'APP:CHAT_CHANNEL:CONNECTING'
+  })
+
+  startChatChannel(dispatch, authToken)
+})
+
 export default {
+  connectToChatChannel,
   logout,
   setLoginModalEmail,
   setLoginModalPassword,
