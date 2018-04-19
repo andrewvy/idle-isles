@@ -38,6 +38,13 @@ const setLoginModalPassword = (password) => ({
   },
 })
 
+const setAuthToken = (token) => ({
+  type: 'APP:SET_AUTH_TOKEN',
+  data: {
+    token,
+  },
+})
+
 export default {
   toggleLoginModal,
   submitLogin,

@@ -1,3 +1,19 @@
+const getAuthToken = () => {
+  if (window.localStorage) {
+    return window.localStorage.getItem('auth_token')
+  } else {
+    return null
+  }
+}
+
+const setAuthToken = (state, token) => {
+  if (window.localStorage) {
+    window.localStorage.setItem('auth_token', token)
+  }
+
+  return { ...state, authToken: token }
+}
+
 const initialState = {
   user: {},
   isLoggedIn: false,
@@ -7,6 +23,7 @@ const initialState = {
     password: '',
     isLoggingIn: false,
   },
+  authToken: getAuthToken(),
 }
 
 const App = (state = initialState, action) => {
@@ -22,9 +39,17 @@ const App = (state = initialState, action) => {
     case 'APP:HOME:LOGIN:REQUEST':
       return { ...state, loginModal: { ...state.loginModal, isLoggingIn: true } }
     case 'APP:HOME:LOGIN:SUCCESS':
-      return { ...state, loginModal: { ...state.loginModal, isLoggingIn: false } }
+      return setAuthToken({
+        ...state,
+        loginModal: {
+          ...state.loginModal,
+          isLoggingIn: false
+        }
+      }, action.payload.data.login.token)
     case 'APP:HOME:LOGIN:FAILURE':
       return { ...state, loginModal: { ...state.loginModal, isLoggingIn: false } }
+    case 'APP:SET_AUTH_TOKEN':
+      return setAuthToken(state, data.token)
     default:
       return state
   }
