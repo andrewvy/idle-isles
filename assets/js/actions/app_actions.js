@@ -82,7 +82,7 @@ const submitRegistration = () => ((dispatch, getState) => {
   })
 
   dispatch(apiAction).then(() => {
-    History.push('/', {})
+    dispatch(toggleRegistrationModal())
   })
 })
 

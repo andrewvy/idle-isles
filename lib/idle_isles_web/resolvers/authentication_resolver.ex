@@ -4,7 +4,7 @@ defmodule IdleIslesWeb.Resolvers.AuthenticationResolver do
   def register(%{email: _, password: _, name: _} = attrs, %{context: %{current_user: nil}}) do
     case Accounts.register(attrs) do
       {:error, changeset} -> IdleIslesWeb.Schema.format_changeset(changeset)
-      {:ok, user} -> {:ok, user}
+      {:ok, user} -> {:ok, %{user: Map.take(user, [:id, :name, :email])}}
     end
   end
 
