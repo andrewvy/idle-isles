@@ -1,6 +1,8 @@
 defmodule IdleIslesWeb.UserSocket do
   use Phoenix.Socket
 
+  alias IdleIsles.{Accounts, Authentication}
+
   ## Channels
   channel "chat", IdleIslesWeb.ChatChannel
 
@@ -20,7 +22,16 @@ defmodule IdleIslesWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(params, socket) do
-    {:ok, socket}
+    case Authentication.verify_token(params["auth_token"]) do
+      {:ok, token_struct} ->
+        user_id = token_struct.claims["user_id"]
+
+        case Accounts.get_user(user_id) do
+          nil -> :error
+          user -> {:ok, assign(socket, :user, user)}
+        end
+      {:error, _} -> :error
+    end
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:

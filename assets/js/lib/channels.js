@@ -1,5 +1,7 @@
 import { Socket } from 'phoenix'
 
+import { chatConnected, chatError, newChatMessage } from '~/actions/chat_actions'
+
 const startChatChannel = (dispatch, authToken) => {
 	let socket = new Socket("/socket", {
 		logger: ((kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }),
@@ -14,21 +16,20 @@ const startChatChannel = (dispatch, authToken) => {
 
   channel.join()
     .receive("ok", () => {
-      dispatch({
-        type: 'APP:CHAT_CHANNEL:CONNECTED',
-      })
+      dispatch(
+        chatConnected(channel)
+      )
     })
     .receive("error", () => {
-      dispatch({
-        type: 'APP:CHAT_CHANNEL:ERROR',
-      })
+      dispatch(
+        chatError()
+      )
     })
 
   channel.on('new:msg', msg => {
-    dispatch({
-      type: 'APP:CHAT_CHANNEL:MESSAGE',
-      data: msg,
-    })
+    dispatch(
+      newChatMessage(msg)
+    )
   })
 }
 
