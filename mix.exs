@@ -20,7 +20,7 @@ defmodule IdleIsles.Mixfile do
   def application do
     [
       mod: {IdleIsles.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :edeliver]
     ]
   end
 
@@ -47,6 +47,8 @@ defmodule IdleIsles.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
       {:poison, "~> 3.1"},
+      {:edeliver, "~> 1.5.0"},
+      {:distillery, "~> 1.5", runtime: false},
     ]
   end
 

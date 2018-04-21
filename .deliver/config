@@ -1,0 +1,9 @@
+APP="idle_isles"
+
+BUILD_HOST="138.68.249.104"
+BUILD_USER="ubuntu"
+BUILD_AT="/tmp/edeliver/idle_isles/builds"
+
+STAGING_HOSTS="138.68.249.104"
+STAGING_USER="ubuntu"
+DELIVER_TO="/home/ubuntu"

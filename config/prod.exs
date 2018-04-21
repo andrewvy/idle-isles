@@ -15,7 +15,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :idle_isles, IdleIslesWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
+  url: [host: "idle-isles.andrewvy.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -51,7 +51,7 @@ config :logger, level: :info
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start the server for all endpoints:
 #
-#     config :phoenix, :serve_endpoints, true
+config :phoenix, :serve_endpoints, true
 #
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
@@ -59,6 +59,6 @@ config :logger, level: :info
 #     config :idle_isles, IdleIslesWeb.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :idle_isles, IdleIsles.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  pool_size: 20
