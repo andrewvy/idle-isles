@@ -102,7 +102,7 @@ const App = (state = initialState, action) => {
         registrationModal: {
           ...state.registrationModal,
           isRegistering: false,
-          error: data[0].message,
+          error: data.map((error) => error.message).join('\n'),
         }
       }
     case 'APP:SET_AUTH_TOKEN':

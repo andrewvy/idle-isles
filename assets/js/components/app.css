@@ -1,3 +1,7 @@
 .footer {
   color: #000;
 }
+
+.message {
+  white-space: pre-wrap;
+}

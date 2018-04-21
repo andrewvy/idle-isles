@@ -39,4 +39,14 @@ defmodule IdleIslesWeb.Schema do
   object :register_response do
     field :user, :user
   end
+
+  def format_changeset(changeset) do
+    errors =
+      changeset.errors
+      |> Enum.map(fn({key, {value, _}}) ->
+        [message: "#{key} #{value}"]
+      end)
+
+    {:error, errors}
+  end
 end

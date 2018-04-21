@@ -18,7 +18,7 @@ const RegistrationModal = ({
             Boolean(registrationModal.error) &&
             <article className='message is-danger'>
               <div className='message-header'>
-                <p>Danger</p>
+                <p>Error</p>
               </div>
               <div className='message-body'>
                 {registrationModal.error}

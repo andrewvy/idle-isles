@@ -3,9 +3,13 @@ defmodule IdleIslesWeb.Resolvers.AuthenticationResolver do
 
   def register(%{email: _, password: _, name: _} = attrs, %{context: %{current_user: nil}}) do
     case Accounts.register(attrs) do
-      {:error, _} -> {:error, "Already taken"}
+      {:error, changeset} -> IdleIslesWeb.Schema.format_changeset(changeset)
       {:ok, user} -> {:ok, user}
     end
+  end
+
+  def register(_attrs, %{context: %{current_user: _}}) do
+    {:error, "Already logged in!"}
   end
 
   def login(%{email: email, password: password}, %{context: %{current_user: nil}}) do
