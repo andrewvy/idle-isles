@@ -2,7 +2,14 @@ import { Socket } from 'phoenix'
 
 import { chatConnected, chatError, newChatMessage } from '~/actions/chat_actions'
 
-const startChatChannel = (dispatch, authToken) => {
+import {
+  newUserMessage,
+  userChannelConnecting,
+  userChannelConnected,
+  userChannelError
+} from '~/actions/channels_actions'
+
+const startChatChannel = (dispatch, authToken, user) => {
 	let socket = new Socket("/socket", {
 		logger: ((kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }),
     params: {
@@ -12,12 +19,12 @@ const startChatChannel = (dispatch, authToken) => {
 
   socket.connect()
 
-  let channel = socket.channel('chat', {})
+  let chatChannel = socket.channel('chat', {})
 
-  channel.join()
+  chatChannel.join()
     .receive("ok", () => {
       dispatch(
-        chatConnected(channel)
+        chatConnected(chatChannel)
       )
     })
     .receive("error", () => {
@@ -26,10 +33,30 @@ const startChatChannel = (dispatch, authToken) => {
       )
     })
 
-  channel.on('new:msg', msg => {
+  chatChannel.on('new:msg', msg => {
     dispatch(
       newChatMessage(msg)
     )
+  })
+
+  let userChannel = socket.channel(`user:${user.id}`, {})
+
+  dispatch(userChannelConnecting())
+
+  userChannel.join()
+    .receive("ok", () => {
+      dispatch(
+        userChannelConnected(userChannel)
+      )
+    })
+    .receive("error", () => {
+      dispatch(
+        userChannelError()
+      )
+    })
+
+  userChannel.on('tick', state => {
+    dispatch(newUserMessage(state))
   })
 }
 

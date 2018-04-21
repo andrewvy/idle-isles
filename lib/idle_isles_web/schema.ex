@@ -34,6 +34,7 @@ defmodule IdleIslesWeb.Schema do
 
   object :login_response do
     field :token, :string
+    field :user, :user
   end
 
   object :register_response do

@@ -2,6 +2,7 @@ import { createApiAction } from '~/lib/api'
 
 import History from '~/lib/history'
 
+import meQuery from '~/queries/me'
 import loginQuery from '~/queries/login'
 import registerQuery from '~/queries/register'
 import { startChatChannel } from '~/lib/channels'
@@ -54,12 +55,13 @@ const logout = () => ((dispatch, _) => {
 
 const connectToChatChannel = () => ((dispatch, getState) => {
   const authToken = getState().App.authToken
+  const user = getState().App.user
 
   dispatch({
     type: 'APP:CHAT_CHANNEL:CONNECTING'
   })
 
-  startChatChannel(dispatch, authToken)
+  startChatChannel(dispatch, authToken, user)
 })
 
 const toggleRegistrationModal = () => ({
@@ -86,14 +88,23 @@ const submitRegistration = () => ((dispatch, getState) => {
   })
 })
 
+const loadUser = () => ((dispatch, getState) => {
+  const apiAction = createApiAction('APP:HOME:LOAD_USER', meQuery, {})
+
+  dispatch(apiAction).catch(() => {
+    History.push('/logout', {})
+  })
+})
+
 export default {
   connectToChatChannel,
+  loadUser,
   logout,
   setLoginModalEmail,
   setLoginModalPassword,
+  setRegistrationModalData,
   submitLogin,
+  submitRegistration,
   toggleLoginModal,
   toggleRegistrationModal,
-  setRegistrationModalData,
-  submitRegistration,
 }

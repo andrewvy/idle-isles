@@ -23,7 +23,8 @@ const clearAuthToken = (state) => {
 }
 
 const initialState = {
-  user: {},
+  user: null,
+  isLoadingUser: false,
   isLoggedIn: false,
   showLoginModal: false,
   loginModal: {
@@ -109,6 +110,22 @@ const App = (state = initialState, action) => {
       return setAuthToken(state, data.token)
     case 'APP:LOGOUT':
       return clearAuthToken(state)
+    case 'APP:HOME:LOAD_USER:STARTED':
+      return {
+        ...state,
+        isLoadingUser: true,
+      }
+    case 'APP:HOME:LOAD_USER:SUCCESS':
+      return {
+        ...state,
+        isLoadingUser: false,
+        user: data.me,
+      }
+    case 'APP:HOME:LOAD_USER:FAILURE':
+      return {
+        ...state,
+        isLoadingUser: false,
+      }
     default:
       return state
   }

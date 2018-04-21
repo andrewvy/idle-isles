@@ -1,4 +1,5 @@
 const initialState = {
+  isConnecting: false,
   channel: null,
   messages: [],
   error: null,
@@ -25,10 +26,12 @@ const Chat = (state = initialState, action) => {
       }
 
       return { ...state, messageInput: '' }
+    case 'APP:CHAT_CHANNEL:CONNECTING':
+      return { ...state, isConnecting: true }
     case 'CHAT:CONNECTED':
-      return { ...state, channel: data }
+      return { ...state, channel: data, isConnecting: false }
     case 'CHAT:ERROR':
-      return { ...state, error: 'Error connecting..' }
+      return { ...state, error: 'Error connecting..', isConnecting: false }
     case 'CHAT:SET_MESSAGE_INPUT':
       return { ...state, messageInput: data }
     default:

@@ -5,6 +5,7 @@ defmodule IdleIslesWeb.UserSocket do
 
   ## Channels
   channel "chat", IdleIslesWeb.ChatChannel
+  channel "user:*", IdleIslesWeb.UserChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

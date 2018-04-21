@@ -15,7 +15,7 @@ defmodule IdleIsles.Authentication do
       nil -> {:error, :not_found}
       user ->
         if Argon2.verify_pass(password, user.password) do
-          {:ok, generate_token(user)}
+          {:ok, user, generate_token(user)}
         else
           {:error, :invalid_password}
         end
