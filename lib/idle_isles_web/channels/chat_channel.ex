@@ -6,7 +6,8 @@ defmodule IdleIslesWeb.ChatChannel do
   end
 
   def handle_in("new:msg", %{"body" => body}, socket) do
-    broadcast! socket, "new:msg", %{name: socket.assigns.user.name, body: body}
+    timestamp = DateTime.utc_now |> DateTime.to_time() |> Time.to_iso8601()
+    broadcast! socket, "new:msg", %{name: socket.assigns.user.name, body: body, timestamp: timestamp}
 
     {:noreply, socket}
   end

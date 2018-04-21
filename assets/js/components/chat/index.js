@@ -21,6 +21,7 @@ const Chat = ({
           {
             chat.messages.map((message, i) => (
               <div key={i}>
+                <span>[{message.timestamp}] </span>
                 <span>{message.name}: </span>
                 <span>{message.body}</span>
               </div>
