@@ -21,6 +21,7 @@ defmodule IdleIsles.Accounts.User do
     |> cast(attrs, [:name, :email])
     |> put_change(:password, hashed_password)
     |> validate_required([:name, :email, :password])
+    |> validate_username()
     |> unique_constraint(:name)
     |> unique_constraint(:email)
   end
@@ -28,6 +29,7 @@ defmodule IdleIsles.Accounts.User do
     user
     |> cast(attrs, [:name, :email])
     |> validate_required([:name, :email, :password])
+    |> validate_username()
     |> unique_constraint(:name)
     |> unique_constraint(:email)
   end
@@ -37,7 +39,17 @@ defmodule IdleIsles.Accounts.User do
     user
     |> cast(attrs, [:name, :email, :password])
     |> validate_required([:name, :email, :password])
+    |> validate_username()
     |> unique_constraint(:name)
     |> unique_constraint(:email)
+  end
+
+  def validate_username(changeset) do
+    validate_change(changeset, :name, fn _, name ->
+      case Regex.scan(~r/^\S*$/, name) do
+        [] -> [{:name, "Invalid username"}]
+        _ -> []
+      end
+    end)
   end
 end
