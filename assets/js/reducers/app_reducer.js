@@ -31,6 +31,14 @@ const initialState = {
     password: '',
     isLoggingIn: false,
   },
+  registrationModal: {
+    email: '',
+    password: '',
+    name: '',
+    isRegistering: false,
+    showRegistrationModal: false,
+    error: null,
+  },
   authToken: getAuthToken(),
 }
 
@@ -44,7 +52,7 @@ const App = (state = initialState, action) => {
       return { ...state, loginModal: { ...state.loginModal, email: data.email } }
     case 'APP:HOME:SET_LOGIN_PASSWORD':
       return { ...state, loginModal: { ...state.loginModal, password: data.password } }
-    case 'APP:HOME:LOGIN:REQUEST':
+    case 'APP:HOME:LOGIN:STARTED':
       return { ...state, loginModal: { ...state.loginModal, isLoggingIn: true } }
     case 'APP:HOME:LOGIN:SUCCESS':
       return setAuthToken({
@@ -53,9 +61,50 @@ const App = (state = initialState, action) => {
           ...state.loginModal,
           isLoggingIn: false
         }
-      }, action.payload.data.login.token)
+      }, data.login.token)
     case 'APP:HOME:LOGIN:FAILURE':
       return { ...state, loginModal: { ...state.loginModal, isLoggingIn: false } }
+    case 'APP:HOME:TOGGLE_REGISTRATION_MODAL':
+      return {
+        ...state,
+        registrationModal: {
+          ...state.registrationModal,
+          showRegistrationModal: !state.registrationModal.showRegistrationModal
+        }
+      }
+    case 'APP:HOME:SET_REGISTRATION_MODAL_DATA':
+      return {
+        ...state,
+        registrationModal: {
+          ...state.registrationModal,
+          ...data,
+        }
+      }
+    case 'APP:HOME:REGISTER:STARTED':
+      return {
+        ...state,
+        registrationModal: {
+          ...state.registrationModal,
+          isRegistering: true,
+        }
+      }
+    case 'APP:HOME:REGISTER:SUCCESS':
+      return {
+        ...state,
+        registrationModal: {
+          ...state.registrationModal,
+          isRegistering: false,
+        }
+      }
+    case 'APP:HOME:REGISTER:FAILURE':
+      return {
+        ...state,
+        registrationModal: {
+          ...state.registrationModal,
+          isRegistering: false,
+          error: data[0].message,
+        }
+      }
     case 'APP:SET_AUTH_TOKEN':
       return setAuthToken(state, data.token)
     case 'APP:LOGOUT':

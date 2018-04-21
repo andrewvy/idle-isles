@@ -1,5 +1,12 @@
 defmodule IdleIslesWeb.Resolvers.AuthenticationResolver do
-  alias IdleIsles.Authentication
+  alias IdleIsles.{Accounts, Authentication}
+
+  def register(%{email: _, password: _, name: _} = attrs, %{context: %{current_user: nil}}) do
+    case Accounts.register(attrs) do
+      {:error, _} -> {:error, "Already taken"}
+      {:ok, user} -> {:ok, user}
+    end
+  end
 
   def login(%{email: email, password: password}, %{context: %{current_user: nil}}) do
     case Authentication.login(email, password) do

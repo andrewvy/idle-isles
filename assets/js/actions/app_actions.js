@@ -1,8 +1,9 @@
-import { RSAA } from 'redux-api-middleware'
+import { createApiAction } from '~/lib/api'
 
 import History from '~/lib/history'
 
 import loginQuery from '~/queries/login'
+import registerQuery from '~/queries/register'
 import { startChatChannel } from '~/lib/channels'
 
 const toggleLoginModal = () => ({
@@ -10,23 +11,10 @@ const toggleLoginModal = () => ({
 })
 
 const submitLogin = (email, password) => ((dispatch, _) => {
-  const apiAction = {
-    [RSAA]: {
-      endpoint: '/api',
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: loginQuery,
-        variables: {
-          email,
-          password,
-        },
-      }),
-      types: ['APP:HOME:LOGIN:REQUEST', 'APP:HOME:LOGIN:SUCCESS', 'APP:HOME:LOGIN:FAILURE']
-    }
-  }
+  const apiAction = createApiAction('APP:HOME:LOGIN', loginQuery, {
+    email,
+    password,
+  })
 
   dispatch(apiAction).then(() => {
     History.push('/home', {})
@@ -74,6 +62,30 @@ const connectToChatChannel = () => ((dispatch, getState) => {
   startChatChannel(dispatch, authToken)
 })
 
+const toggleRegistrationModal = () => ({
+  type: 'APP:HOME:TOGGLE_REGISTRATION_MODAL',
+})
+
+const setRegistrationModalData = (attrs) => ({
+  type: 'APP:HOME:SET_REGISTRATION_MODAL_DATA',
+  data: attrs,
+})
+
+const submitRegistration = () => ((dispatch, getState) => {
+  const registrationData = getState().App.registrationModal
+  const { email, password, name } = registrationData
+
+  const apiAction = createApiAction('APP:HOME:REGISTER', registerQuery, {
+    email,
+    password,
+    name,
+  })
+
+  dispatch(apiAction).then(() => {
+    History.push('/', {})
+  })
+})
+
 export default {
   connectToChatChannel,
   logout,
@@ -81,4 +93,7 @@ export default {
   setLoginModalPassword,
   submitLogin,
   toggleLoginModal,
+  toggleRegistrationModal,
+  setRegistrationModalData,
+  submitRegistration,
 }

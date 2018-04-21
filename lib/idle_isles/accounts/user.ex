@@ -21,11 +21,15 @@ defmodule IdleIsles.Accounts.User do
     |> cast(attrs, [:name, :email])
     |> put_change(:password, hashed_password)
     |> validate_required([:name, :email, :password])
+    |> unique_constraint(:name)
+    |> unique_constraint(:email)
   end
   def new_changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :email])
     |> validate_required([:name, :email, :password])
+    |> unique_constraint(:name)
+    |> unique_constraint(:email)
   end
 
   @doc false
@@ -33,5 +37,7 @@ defmodule IdleIsles.Accounts.User do
     user
     |> cast(attrs, [:name, :email, :password])
     |> validate_required([:name, :email, :password])
+    |> unique_constraint(:name)
+    |> unique_constraint(:email)
   end
 end

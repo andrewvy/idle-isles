@@ -1,18 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import { connect } from 'react-redux'
 
-import Actions from '~/actions'
-
 import '~/components/app.css'
-
-const preventDefault = (func) => (
-  (e) => {
-    e.preventDefault()
-    func()
-  }
-)
+import Actions from '~/actions'
+import LoginModal from '~/components/login_modal'
+import RegistrationModal from '~/components/registration_modal'
+import { preventDefault } from '~/lib/utils'
 
 const App = ({
   loginModal,
@@ -21,6 +15,10 @@ const App = ({
   showLoginModal,
   submitLogin,
   toggleLoginModal,
+  registrationModal,
+  toggleRegistrationModal,
+  setRegistrationModalData,
+  submitRegistration,
 }) => (
   <React.Fragment>
     <section className='hero is-primary is-fullheight'>
@@ -38,75 +36,33 @@ const App = ({
                 <button className='button' onClick={preventDefault(toggleLoginModal)}>Log In</button>
               </div>
               <div className='level-item'>
-                <button className='button'>Register</button>
+                <button className='button' onClick={preventDefault(toggleRegistrationModal)}>Register</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <div className={classnames('modal', { 'is-active': showLoginModal })}>
-      <div className='modal-background'></div>
-      <div className='modal-content'>
-        <div className='box'>
-          <form>
-            <h1 className='title'>Login</h1>
-            <div className='field'>
-              <label className='label'>Email</label>
-              <div className='control'>
-                <input
-                  className='input'
-                  type='email'
-                  placeholder='Email'
-                  value={loginModal.email}
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className='field'>
-              <label className='label'>Password</label>
-              <div className='control'>
-                <input
-                  className='input'
-                  type='Password'
-                  placeholder='Password'
-                  value={loginModal.password}
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className='field is-grouped is-grouped-right'>
-              <div className='control'>
-                <button
-                  className={classnames('button is-link', { 'is-loading': loginModal.isLoggingIn })}
-                  onClick={preventDefault(() => submitLogin(loginModal.email, loginModal.password))}
-                >
-                  Submit
-                </button>
-              </div>
-              <div className='control'>
-                <button
-                  className='button is-text'
-                  onClick={preventDefault(toggleLoginModal)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <button
-        className='modal-close is-large'
-        aria-label='close'
-        onClick={preventDefault(toggleLoginModal)}
-      />
-    </div>
+    <LoginModal
+      loginModal={loginModal}
+      setLoginEmail={setLoginEmail}
+      setLoginPassword={setLoginPassword}
+      showLoginModal={showLoginModal}
+      submitLogin={submitLogin}
+      toggleLoginModal={toggleLoginModal}
+    />
+    <RegistrationModal
+      registrationModal={registrationModal}
+      toggleRegistrationModal={toggleRegistrationModal}
+      setRegistrationModalData={setRegistrationModalData}
+      submitRegistration={submitRegistration}
+    />
   </React.Fragment>
 )
 
 const mapStateToProps = (state) => ({
   loginModal: state.App.loginModal,
+  registrationModal: state.App.registrationModal,
   showLoginModal: state.App.showLoginModal,
 })
 
@@ -115,6 +71,9 @@ const mapDispatchToProps = (dispatch) => ({
   setLoginPassword: (password) => dispatch(Actions.App.setLoginModalPassword(password)),
   submitLogin: (email, password) => dispatch(Actions.App.submitLogin(email, password)),
   toggleLoginModal: () => dispatch(Actions.App.toggleLoginModal()),
+  toggleRegistrationModal: () => dispatch(Actions.App.toggleRegistrationModal()),
+  setRegistrationModalData: (attrs) => dispatch(Actions.App.setRegistrationModalData(attrs)),
+  submitRegistration: () => dispatch(Actions.App.submitRegistration()),
 })
 
 App.propTypes = {
@@ -123,6 +82,9 @@ App.propTypes = {
   setLoginPassword: PropTypes.func.isRequired,
   submitLogin: PropTypes.func.isRequired,
   toggleLoginModal: PropTypes.func.isRequired,
+  toggleRegistrationModal: PropTypes.func.isRequired,
+  setRegistrationModalData: PropTypes.func.isRequired,
+  submitRegistration: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -16,6 +16,14 @@ defmodule IdleIslesWeb.Schema do
 
       resolve &Resolvers.AuthenticationResolver.login/2
     end
+
+    field :register, type: :register_response do
+      arg :email, non_null(:string)
+      arg :password, non_null(:string)
+      arg :name, non_null(:string)
+
+      resolve &Resolvers.AuthenticationResolver.register/2
+    end
   end
 
   object :user do
@@ -26,5 +34,9 @@ defmodule IdleIslesWeb.Schema do
 
   object :login_response do
     field :token, :string
+  end
+
+  object :register_response do
+    field :user, :user
   end
 end

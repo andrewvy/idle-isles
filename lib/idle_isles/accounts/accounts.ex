@@ -53,6 +53,12 @@ defmodule IdleIsles.Accounts do
     |> Repo.insert()
   end
 
+  def register(attrs \\ %{}) do
+    %User{}
+    |> User.new_changeset(attrs)
+    |> Repo.insert()
+  end
+
   @doc """
   Updates a user.
 
