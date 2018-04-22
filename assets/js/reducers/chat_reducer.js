@@ -1,7 +1,9 @@
+import CircularBuffer from '~/lib/circular_buffer'
+
 const initialState = {
   isConnecting: false,
   channel: null,
-  messages: [],
+  messages: new CircularBuffer(15),
   error: null,
   messageInput: '',
 }
@@ -13,10 +15,7 @@ const Chat = (state = initialState, action) => {
     case 'CHAT:NEW_MESSAGE':
       return {
         ...state,
-        messages: [
-          ...state.messages,
-          data,
-        ]
+        messages: state.messages.push(data)
       }
     case 'CHAT:SEND_MESSAGE':
       if (Boolean(state.channel)) {
