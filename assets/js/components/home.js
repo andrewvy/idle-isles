@@ -28,20 +28,59 @@ class Home extends React.Component {
   render() {
     if (this.props.isLoadingUser || this.props.user === null) {
       return (
-        <div>
+        <div className='container'>
           Loading...
         </div>
       )
     } else {
       return (
-        <div>
-          Welcome {this.props.user.name}
-          <Chat
-            sendChatMessage={this.props.sendChatMessage}
-            chat={this.props.chat}
-            setMessageInput={this.props.setMessageInput}
-          />
-          <Link to='/logout'>Log Out</Link>
+        <div className='container'>
+          <div className='level'>
+            <div className='level-right'>
+              <div className='level-item'>
+                <Link to='/logout'>Log Out</Link>
+              </div>
+            </div>
+          </div>
+          <div className='level'>
+            <div className='level-item has-text-centered'>
+              <div>
+                <p className='heading'>
+                  Name
+                </p>
+                <p className='title'>
+                  {this.props.user.name}
+                </p>
+              </div>
+            </div>
+            <div className='level-item has-text-centered'>
+              <div>
+                <p className='heading'>
+                  Status
+                </p>
+                <p className='title'>
+                  {this.props.userState.state}
+                </p>
+              </div>
+            </div>
+            <div className='level-item has-text-centered'>
+              <div>
+                <p className='heading'>
+                  Health
+                </p>
+                <p className='title'>
+                  {this.props.userState.health}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className='level'>
+            <Chat
+              sendChatMessage={this.props.sendChatMessage}
+              chat={this.props.chat}
+              setMessageInput={this.props.setMessageInput}
+            />
+          </div>
         </div>
       )
     }
@@ -52,6 +91,7 @@ const mapStateToProps = (state) => ({
   chat: state.Chat,
   isLoadingUser: state.App.isLoadingUser,
   user: state.App.user,
+  userState: state.Channels.userState,
 })
 
 const mapDispatchToProps = (dispatch) => ({

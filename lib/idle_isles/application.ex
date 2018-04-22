@@ -11,6 +11,7 @@ defmodule IdleIsles.Application do
       supervisor(IdleIsles.Repo, []),
       supervisor(IdleIslesWeb.Endpoint, []),
       supervisor(IdleIsles.Player.Supervisor, []),
+      worker(IdleIsles.Sync, []),
       worker(IdleIsles.Player.Registry, []),
     ]
 
