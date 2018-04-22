@@ -10,24 +10,24 @@ import {
 } from '~/actions/channels_actions'
 
 const startChatChannel = (dispatch, authToken, user) => {
-	let socket = new Socket("/socket", {
-		logger: ((kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }),
+  let socket = new Socket('/socket', {
+    logger: (kind, msg, data) => { console.log(`${kind}: ${msg}`, data) },
     params: {
       auth_token: authToken
     }
-	})
+  })
 
   socket.connect()
 
   let chatChannel = socket.channel('chat', {})
 
   chatChannel.join()
-    .receive("ok", () => {
+    .receive('ok', () => {
       dispatch(
         chatConnected(chatChannel)
       )
     })
-    .receive("error", () => {
+    .receive('error', () => {
       dispatch(
         chatError()
       )
@@ -44,12 +44,12 @@ const startChatChannel = (dispatch, authToken, user) => {
   dispatch(userChannelConnecting())
 
   userChannel.join()
-    .receive("ok", () => {
+    .receive('ok', () => {
       dispatch(
         userChannelConnected(userChannel)
       )
     })
-    .receive("error", () => {
+    .receive('error', () => {
       dispatch(
         userChannelError()
       )
@@ -61,5 +61,5 @@ const startChatChannel = (dispatch, authToken, user) => {
 }
 
 export {
-  startChatChannel,
+  startChatChannel
 }

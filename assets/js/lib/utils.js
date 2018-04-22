@@ -1,10 +1,9 @@
-const preventDefault = (func) => (
+const preventDefault = (func) =>
   (e) => {
     e.preventDefault()
     func()
   }
-)
 
 export {
-  preventDefault,
+  preventDefault
 }

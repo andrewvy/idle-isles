@@ -1,13 +1,13 @@
 const initialState = {
   userChannel: null,
   chatChannel: null,
-  userState: {},
+  userState: {}
 }
 
 const Channels = (state = initialState, action) => {
   const data = action.data
 
-  switch(action.type) {
+  switch (action.type) {
     case 'CHANNELS:USER:CONNECTED':
       return { ...state, userChannel: data }
     case 'CHANNELS:USER:NEW_MESSAGE':

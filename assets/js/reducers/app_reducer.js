@@ -30,7 +30,7 @@ const initialState = {
   loginModal: {
     email: '',
     password: '',
-    isLoggingIn: false,
+    isLoggingIn: false
   },
   registrationModal: {
     email: '',
@@ -38,15 +38,15 @@ const initialState = {
     name: '',
     isRegistering: false,
     showRegistrationModal: false,
-    error: null,
+    error: null
   },
-  authToken: getAuthToken(),
+  authToken: getAuthToken()
 }
 
 const App = (state = initialState, action) => {
   const data = action.data
 
-  switch(action.type) {
+  switch (action.type) {
     case 'APP:HOME:TOGGLE_LOGIN_MODAL':
       return { ...state, showLoginModal: !state.showLoginModal }
     case 'APP:HOME:SET_LOGIN_EMAIL':
@@ -78,7 +78,7 @@ const App = (state = initialState, action) => {
         ...state,
         registrationModal: {
           ...state.registrationModal,
-          ...data,
+          ...data
         }
       }
     case 'APP:HOME:REGISTER:STARTED':
@@ -86,7 +86,7 @@ const App = (state = initialState, action) => {
         ...state,
         registrationModal: {
           ...state.registrationModal,
-          isRegistering: true,
+          isRegistering: true
         }
       }
     case 'APP:HOME:REGISTER:SUCCESS':
@@ -94,7 +94,7 @@ const App = (state = initialState, action) => {
         ...state,
         registrationModal: {
           ...state.registrationModal,
-          isRegistering: false,
+          isRegistering: false
         }
       }
     case 'APP:HOME:REGISTER:FAILURE':
@@ -103,7 +103,7 @@ const App = (state = initialState, action) => {
         registrationModal: {
           ...state.registrationModal,
           isRegistering: false,
-          error: data.map((error) => error.message).join('\n'),
+          error: data.map((error) => error.message).join('\n')
         }
       }
     case 'APP:SET_AUTH_TOKEN':
@@ -113,18 +113,18 @@ const App = (state = initialState, action) => {
     case 'APP:HOME:LOAD_USER:STARTED':
       return {
         ...state,
-        isLoadingUser: true,
+        isLoadingUser: true
       }
     case 'APP:HOME:LOAD_USER:SUCCESS':
       return {
         ...state,
         isLoadingUser: false,
-        user: data.me,
+        user: data.me
       }
     case 'APP:HOME:LOAD_USER:FAILURE':
       return {
         ...state,
-        isLoadingUser: false,
+        isLoadingUser: false
       }
     default:
       return state

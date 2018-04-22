@@ -4,20 +4,20 @@ import { Route, Redirect } from 'react-router'
 import Store from '~/store'
 
 const AuthRoute = ({
-	component: Component,
+  component: Component,
   store,
-	...rest
+  ...rest
 }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        Boolean(Store.getState().App.authToken) ? (
+        Store.getState().App.authToken ? (
           <Component {...props} />
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: '/',
               state: { from: props.location }
             }}
           />
@@ -28,20 +28,20 @@ const AuthRoute = ({
 }
 
 const DeauthRoute = ({
-	component: Component,
+  component: Component,
   store,
-	...rest
+  ...rest
 }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        !Boolean(Store.getState().App.authToken) ? (
+        !Store.getState().App.authToken ? (
           <Component {...props} />
         ) : (
           <Redirect
             to={{
-              pathname: "/home",
+              pathname: '/home',
               state: { from: props.location }
             }}
           />
@@ -53,5 +53,5 @@ const DeauthRoute = ({
 
 export {
   AuthRoute,
-  DeauthRoute,
+  DeauthRoute
 }

@@ -18,7 +18,7 @@ const App = ({
   registrationModal,
   toggleRegistrationModal,
   setRegistrationModalData,
-  submitRegistration,
+  submitRegistration
 }) => (
   <React.Fragment>
     <section className='hero is-primary is-fullheight'>
@@ -63,7 +63,7 @@ const App = ({
 const mapStateToProps = (state) => ({
   loginModal: state.App.loginModal,
   registrationModal: state.App.registrationModal,
-  showLoginModal: state.App.showLoginModal,
+  showLoginModal: state.App.showLoginModal
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleLoginModal: () => dispatch(Actions.App.toggleLoginModal()),
   toggleRegistrationModal: () => dispatch(Actions.App.toggleRegistrationModal()),
   setRegistrationModalData: (attrs) => dispatch(Actions.App.setRegistrationModalData(attrs)),
-  submitRegistration: () => dispatch(Actions.App.submitRegistration()),
+  submitRegistration: () => dispatch(Actions.App.submitRegistration())
 })
 
 App.propTypes = {
@@ -84,7 +84,7 @@ App.propTypes = {
   toggleLoginModal: PropTypes.func.isRequired,
   toggleRegistrationModal: PropTypes.func.isRequired,
   setRegistrationModalData: PropTypes.func.isRequired,
-  submitRegistration: PropTypes.func.isRequired,
+  submitRegistration: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

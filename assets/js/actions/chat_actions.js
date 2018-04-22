@@ -1,24 +1,24 @@
 const newChatMessage = (message) => ({
   type: 'CHAT:NEW_MESSAGE',
-  data: message,
+  data: message
 })
 
 const sendChatMessage = () => ({
-  type: 'CHAT:SEND_MESSAGE',
+  type: 'CHAT:SEND_MESSAGE'
 })
 
 const setMessageInput = (input) => ({
   type: 'CHAT:SET_MESSAGE_INPUT',
-  data: input,
+  data: input
 })
 
 const chatConnected = (channel) => ({
   type: 'CHAT:CONNECTED',
-  data: channel,
+  data: channel
 })
 
 const chatError = () => ({
-  type: 'CHAT:ERROR',
+  type: 'CHAT:ERROR'
 })
 
 export default {
@@ -26,7 +26,7 @@ export default {
   sendChatMessage,
   setMessageInput,
   chatConnected,
-  chatError,
+  chatError
 }
 
 export {
@@ -34,5 +34,5 @@ export {
   sendChatMessage,
   setMessageInput,
   chatConnected,
-  chatError,
+  chatError
 }

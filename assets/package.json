@@ -4,7 +4,7 @@
   "scripts": {
     "deploy": "parcel build js/bundle.js --out-dir ../priv/static/assets",
     "watch": "parcel watch js/bundle.js --out-dir ../priv/static/assets",
-    "lint": "standard js/",
+    "lint": "standard js/**/*.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

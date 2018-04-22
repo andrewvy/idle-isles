@@ -5,12 +5,12 @@ const createApiAction = (type, query, variables) => ({
     type,
     data: {
       query,
-      variables,
+      variables
     }
   }
 })
 
 export {
   API_TYPE,
-  createApiAction,
+  createApiAction
 }

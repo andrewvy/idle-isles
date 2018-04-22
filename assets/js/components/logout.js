@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Actions from '~/actions'
 
 const Logout = ({
-  performLogout,
+  performLogout
 }) => {
   performLogout()
 
@@ -21,5 +21,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   () => ({}),
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Logout)

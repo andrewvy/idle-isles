@@ -1,15 +1,15 @@
 const newUserMessage = data => ({
   type: 'CHANNELS:USER:NEW_MESSAGE',
-  data,
+  data
 })
 
 const userChannelConnecting = () => ({
-  type: 'CHANNELS:USER:CONNECTING',
+  type: 'CHANNELS:USER:CONNECTING'
 })
 
 const userChannelConnected = (channel) => ({
   type: 'CHANNELS:USER:CONNECTED',
-  data: channel,
+  data: channel
 })
 
 const userChannelError = (error) => ({
@@ -21,12 +21,12 @@ export default {
   newUserMessage,
   userChannelConnecting,
   userChannelConnected,
-  userChannelError,
+  userChannelError
 }
 
 export {
   newUserMessage,
   userChannelConnecting,
   userChannelConnected,
-  userChannelError,
+  userChannelError
 }

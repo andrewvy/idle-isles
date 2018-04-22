@@ -7,17 +7,17 @@ import Chat from '~/components/chat'
 import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.loadUser()
   }
 
-  static getDerivedStateFromProps(newProps, prevState) {
+  static getDerivedStateFromProps (newProps, prevState) {
     if (!newProps.isLoadingUser && newProps.user !== null && !newProps.chat.isConnecting && newProps.chat.channel == null) {
       newProps.connectToChatChannel()
     }
@@ -25,7 +25,7 @@ class Home extends React.Component {
     return {}
   }
 
-  render() {
+  render () {
     if (this.props.isLoadingUser || this.props.user === null) {
       return (
         <div className='container'>
@@ -91,17 +91,17 @@ const mapStateToProps = (state) => ({
   chat: state.Chat,
   isLoadingUser: state.App.isLoadingUser,
   user: state.App.user,
-  userState: state.Channels.userState,
+  userState: state.Channels.userState
 })
 
 const mapDispatchToProps = (dispatch) => ({
   loadUser: () => dispatch(Actions.App.loadUser()),
   connectToChatChannel: () => dispatch(Actions.App.connectToChatChannel()),
   sendChatMessage: () => dispatch(Actions.Chat.sendChatMessage()),
-  setMessageInput: (input) => dispatch(Actions.Chat.setMessageInput(input)),
+  setMessageInput: (input) => dispatch(Actions.Chat.setMessageInput(input))
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Home)

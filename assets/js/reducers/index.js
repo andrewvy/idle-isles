@@ -5,5 +5,5 @@ import Channels from './channels_reducer'
 export default {
   App,
   Chat,
-  Channels,
+  Channels
 }

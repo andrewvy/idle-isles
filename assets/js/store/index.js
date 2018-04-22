@@ -2,7 +2,6 @@ import * as Redux from 'redux'
 
 import thunkMiddleware from 'redux-thunk'
 import History from '~/lib/history'
-import { Route } from 'react-router'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 
 import createApiMiddleware from '~/store/api_middleware'
@@ -17,7 +16,7 @@ const Store = ((_Redux, _Reducers) => {
   )
 
   const reducers = _Redux.combineReducers(_Reducers, {
-    router: routerReducer,
+    router: routerReducer
   })
 
   return Redux.createStore(reducers, {}, Redux.compose(

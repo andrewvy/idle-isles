@@ -1,10 +1,10 @@
 export default class CircularBuffer {
-  constructor(maxElements) {
+  constructor (maxElements) {
     this.maxElements = maxElements
     this.elements = []
   }
 
-  push(element) {
+  push (element) {
     if (this.elements.length > this.maxElements) {
       this.elements.shift()
     }
@@ -14,11 +14,11 @@ export default class CircularBuffer {
     return this
   }
 
-  map(cb) {
+  map (cb) {
     return this.elements.map(cb)
   }
 
-  toArray() {
+  toArray () {
     return this.elements
   }
 }

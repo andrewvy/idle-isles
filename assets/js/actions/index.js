@@ -3,5 +3,5 @@ import Chat from './chat_actions'
 
 export default {
   App,
-  Chat,
+  Chat
 }

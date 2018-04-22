@@ -5,20 +5,20 @@ const initialState = {
   channel: null,
   messages: new CircularBuffer(15),
   error: null,
-  messageInput: '',
+  messageInput: ''
 }
 
 const Chat = (state = initialState, action) => {
   const data = action.data
 
-  switch(action.type) {
+  switch (action.type) {
     case 'CHAT:NEW_MESSAGE':
       return {
         ...state,
         messages: state.messages.push(data)
       }
     case 'CHAT:SEND_MESSAGE':
-      if (Boolean(state.channel)) {
+      if (state.channel) {
         state.channel.push('new:msg', {
           body: state.messageInput
         })

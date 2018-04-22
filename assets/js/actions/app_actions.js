@@ -8,52 +8,52 @@ import registerQuery from '~/queries/register'
 import { startChatChannel } from '~/lib/channels'
 
 const toggleLoginModal = () => ({
-  type: 'APP:HOME:TOGGLE_LOGIN_MODAL',
+  type: 'APP:HOME:TOGGLE_LOGIN_MODAL'
 })
 
-const submitLogin = (email, password) => ((dispatch, _) => {
+const submitLogin = (email, password) => (dispatch, _) => {
   const apiAction = createApiAction('APP:HOME:LOGIN', loginQuery, {
     email,
-    password,
+    password
   })
 
   dispatch(apiAction).then(() => {
     History.push('/home', {})
   })
-})
+}
 
 const setLoginModalEmail = (email) => ({
   type: 'APP:HOME:SET_LOGIN_EMAIL',
   data: {
-    email,
-  },
+    email
+  }
 })
 
 const setLoginModalPassword = (password) => ({
   type: 'APP:HOME:SET_LOGIN_PASSWORD',
   data: {
-    password,
-  },
+    password
+  }
 })
 
 const setAuthToken = (token) => ({
   type: 'APP:SET_AUTH_TOKEN',
   data: {
-    token,
-  },
+    token
+  }
 })
 
-const logout = () => ((dispatch, _) => {
+const logout = () => (dispatch, _) => {
   const action = {
-    type: 'APP:LOGOUT',
+    type: 'APP:LOGOUT'
   }
 
   dispatch(action)
 
   History.push('/', {})
-})
+}
 
-const connectToChatChannel = () => ((dispatch, getState) => {
+const connectToChatChannel = () => (dispatch, getState) => {
   const authToken = getState().App.authToken
   const user = getState().App.user
 
@@ -62,49 +62,50 @@ const connectToChatChannel = () => ((dispatch, getState) => {
   })
 
   startChatChannel(dispatch, authToken, user)
-})
+}
 
 const toggleRegistrationModal = () => ({
-  type: 'APP:HOME:TOGGLE_REGISTRATION_MODAL',
+  type: 'APP:HOME:TOGGLE_REGISTRATION_MODAL'
 })
 
 const setRegistrationModalData = (attrs) => ({
   type: 'APP:HOME:SET_REGISTRATION_MODAL_DATA',
-  data: attrs,
+  data: attrs
 })
 
-const submitRegistration = () => ((dispatch, getState) => {
+const submitRegistration = () => (dispatch, getState) => {
   const registrationData = getState().App.registrationModal
   const { email, password, name } = registrationData
 
   const apiAction = createApiAction('APP:HOME:REGISTER', registerQuery, {
     email,
     password,
-    name,
+    name
   })
 
   dispatch(apiAction).then(() => {
     dispatch(toggleRegistrationModal())
   })
-})
+}
 
-const loadUser = () => ((dispatch, getState) => {
+const loadUser = () => (dispatch, getState) => {
   const apiAction = createApiAction('APP:HOME:LOAD_USER', meQuery, {})
 
   dispatch(apiAction).catch(() => {
     History.push('/logout', {})
   })
-})
+}
 
 export default {
   connectToChatChannel,
   loadUser,
   logout,
+  setAuthToken,
   setLoginModalEmail,
   setLoginModalPassword,
   setRegistrationModalData,
   submitLogin,
   submitRegistration,
   toggleLoginModal,
-  toggleRegistrationModal,
+  toggleRegistrationModal
 }

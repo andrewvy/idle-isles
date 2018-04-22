@@ -4,7 +4,7 @@ const endpoint = '/api'
 
 const defaultConfig = {
   successSuffix: 'SUCCESS',
-  errorSuffix: 'FAILURE',
+  errorSuffix: 'FAILURE'
 }
 
 const parseJSON = response => (
@@ -20,13 +20,13 @@ const createApiMiddleware = (config = defaultConfig) => store => next => action 
       'Content-Type': 'application/json'
     }
 
-    const authHeaders = Boolean(authToken) ? {
+    const authHeaders = authToken ? {
       'Authorization': `Bearer ${authToken}`
     } : {}
 
     const headers = {
       ...baseHeaders,
-      ...authHeaders,
+      ...authHeaders
     }
 
     const actionType = requestAction.type
@@ -35,25 +35,25 @@ const createApiMiddleware = (config = defaultConfig) => store => next => action 
     const options = {
       headers,
       body,
-      method: 'POST',
+      method: 'POST'
     }
 
     store.dispatch({
       type: `${actionType}:STARTED`
     })
 
-    return fetch(endpoint, options)
+    return window.fetch(endpoint, options)
       .then(parseJSON)
       .then(({data, errors}) => {
         if (errors) {
           store.dispatch({
             type: `${actionType}:FAILURE`,
-            data: errors,
+            data: errors
           })
         } else {
           store.dispatch({
             type: `${actionType}:SUCCESS`,
-            data,
+            data
           })
         }
       })
