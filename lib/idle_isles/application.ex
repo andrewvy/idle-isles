@@ -13,6 +13,8 @@ defmodule IdleIsles.Application do
       supervisor(IdleIsles.Player.Supervisor, []),
       worker(IdleIsles.Sync, []),
       worker(IdleIsles.Player.Registry, []),
+      worker(IdleIsles.Zone.Registry, []),
+      worker(IdleIsles.Zone.PlayerRegistry, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
