@@ -11,10 +11,9 @@ defmodule IdleIsles.Application do
       supervisor(IdleIsles.Repo, []),
       supervisor(IdleIslesWeb.Endpoint, []),
       supervisor(IdleIsles.Player.Supervisor, []),
+      supervisor(IdleIsles.ZoneSupervisor, []),
       worker(IdleIsles.Sync, []),
       worker(IdleIsles.Player.Registry, []),
-      worker(IdleIsles.Zone.Registry, []),
-      worker(IdleIsles.Zone.PlayerRegistry, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

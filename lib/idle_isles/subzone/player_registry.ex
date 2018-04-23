@@ -1,6 +1,6 @@
-defmodule IdleIsles.Zone.Registry do
+defmodule IdleIsles.Subzone.PlayerRegistry do
   @moduledoc """
-  Registry for looking up Zone processes.
+  Registry for looking up player processes by Subzone.
   """
 
   def child_spec(_opts) do
