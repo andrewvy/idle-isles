@@ -1,0 +1,35 @@
+.action-bar {
+  align-items: center;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(15, 50px);
+  grid-template-rows: repeat(3, 50px);
+  justify-content: center;
+}
+
+.action-bar-item {
+  border: 1px solid;
+  border-radius: 2px;
+  height: 100%;
+  list-style: none;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.action-bar-item .key {
+  z-index: 2;
+}
+
+.action-bar-item.is-active {
+  box-shadow: 0 0 6px 3px #eee;
+}
+
+.action-bar-item .cooldown {
+  max-width: 48px;
+  min-width: 0px;
+  height: 50px;
+  top: 16px;
+  position: absolute;
+  background-color: #ddd;
+  z-index: -1;
+}
