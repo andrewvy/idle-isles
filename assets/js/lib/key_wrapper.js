@@ -1,6 +1,6 @@
 import React from 'react'
 
-const withKeys = (WrappedComponent) => (
+const withKeys = (WrappedComponent: React.Component) => (
   class KeyWrapper extends React.Component {
     state = { keyEvent: null }
 

@@ -2,13 +2,13 @@ import React from 'react'
 import classnames from 'classnames'
 
 import './index.css'
-import withKeys from '../../lib/key_wrapper'
+import withKeys from '~/lib/key_wrapper'
 
-const MAX_COOLDOWN_WIDTH = 48
-const MIN_COOLDOWN_WIDTH = 0
+const MAX_COOLDOWN_HEIGHT = 50
+const MIN_COOLDOWN_HEIGHT = 0
 
-const createCooldownWidth = percentage => {
-  return `${(MAX_COOLDOWN_WIDTH * (percentage / 100))}px`
+const createCooldownHeight = percentage => {
+  return `${(MAX_COOLDOWN_HEIGHT * (percentage / 100))}px`
 }
 
 function step(timestamp) {
@@ -27,6 +27,7 @@ class ActionBarItem extends React.Component {
   }
 
   state = { active: false, inCooldown: false, cooldownPercentage: 0 }
+  cooldownTime = 500
 
   stepFunction = (timestamp) => {
     if (this.state.inCooldown && !this.cooldownTimestamp) {
@@ -34,14 +35,18 @@ class ActionBarItem extends React.Component {
     }
 
     if (this.state.inCooldown) {
-      if (this.state.cooldownPercentage >= 100) {
+      const progress = timestamp - this.cooldownTimestamp
+      const percentage = Math.min(progress / this.cooldownTime, 1) * 100
+
+      this.setState({
+        cooldownPercentage: percentage
+      })
+
+      if (percentage >= 100) {
+        this.cooldownTimestamp = null
         this.setState({
           inCooldown: false,
           cooldownPercentage: 0,
-        })
-      } else {
-        this.setState({
-          cooldownPercentage: this.state.cooldownPercentage + 3,
         })
       }
     }
@@ -78,7 +83,7 @@ class ActionBarItem extends React.Component {
 
   render() {
     const style = {
-      width: createCooldownWidth(this.state.cooldownPercentage)
+      height: createCooldownHeight(this.state.cooldownPercentage)
     }
 
     return (
